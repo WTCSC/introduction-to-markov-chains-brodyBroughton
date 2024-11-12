@@ -20,14 +20,21 @@ def generate_text(start_word, num_words):
     e.g., capitalization, punctuation, line breaks, etc.
     """
     current_word = start_word
-    result = [current_word]
+    result = [current_word.capitalize()]
     for _ in range(num_words - 1):
         if current_word in transitions:
             next_word = random.choice(transitions[current_word])
-            result.append(next_word)
+            if next_word in ".,!?;":
+                result[-1] += next_word
+            else:
+                result.append(next_word)
             current_word = next_word
         else:
             break
+    # Capitalize the first word after ., ?, !
+    for i in range(1, len(result)):
+        if result[i-1][-1] in ".!?":
+            result[i] = result[i].capitalize()
     return " ".join(result)
 
 # Arg parser
