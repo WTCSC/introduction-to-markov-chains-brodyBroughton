@@ -35,7 +35,7 @@ def generate_text(start_word, num_words):
     for i in range(1, len(result)):
         if result[i-1][-1] in ".!?":
             result[i] = result[i].capitalize()
-    return " ".join(result)
+    return " ".join(result)# + "." <- If a requirement is to end the sentence with a period, the commented code can be used
 
 # Arg parser
 parser = argparse.ArgumentParser(description="Generate text using a Markov chain")
